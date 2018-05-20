@@ -1,40 +1,56 @@
 
 ●anaconda本体のupdate
-conda update conda
+$ conda update conda
 
 ●パッケージ一式のupdate
-conda update --all
+$ conda update --all
 
 ●pythonのヴァージョンのupdate
 # 3.5にupdate
-conda update python=3.5
+$ conda update python=3.5
 
 ●仮想環境の構築
 # hogeという名前の環境をpython3.5系で作成
 # 最後に「anaconda」をつけるとanacondaをが管理しているパッケージ全てが入る
-conda create --name hoge python=3.5 anaconda
+$ conda create --name hoge python=3.5 anaconda
 
 
 ●環境の一覧を取得
-conda info -e
+$ conda info -e
 
 ●仮想環境に入る
 # hogeという環境に入る
-activate hoge
-source activate hoge
+$ activate hoge
+$ source activate hoge
 
 ●仮想環境から出る
-deactivate
+$ deactivate
 
 ●仮想環境の削除
 # hogeという環境を削除する
-conda remove --name hoge --all
+$ conda remove --name hoge --all
 
 
 ●パッケージ一覧の確認
 # 対象の環境に入ってから下記のコマンド
-conda list
+$ conda list
 
 ●パッケージのインストール
 # sklearnのインストール
 conda install sklearn
+
+# もしパッケージが見つからない場合は...
+pipとconda installを組み合わせると仮想環境が破壊されるので、できるだけcondaで統一したい。
+なので、一回下記のコマンドを実行して「チャンネル」が無いかを確認する。
+
+$ anaconda search <パッケージ名>
+
+チャンネルがあれば、下記のコマンドでinstallする。
+$ conda install -c <チャンネル名> <パッケージ名>
+
+詳細はこちら。
+https://conda.io/docs/user-guide/tasks/manage-channels.html
+
+また、自分の環境に問題が無いかを確認する場合は、下記のコマンドを実行する。
+もしpip,conda installで重複してパッケージをインストールしている場合は、「同名のパッケージが重複して存在」している。
+$ conda list
